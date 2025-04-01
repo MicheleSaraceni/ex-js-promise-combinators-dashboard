@@ -36,12 +36,17 @@ export default function App() {
   getDashboardData("vienna")
     .then((data) => {
       console.log('Dasboard data:', data);
-      console.log(
-        `${data.city} is in ${data.country}.\n` +
-        `Today there are ${data.temperature} degrees and the weather is ${data.weather}.\n` +
-        `The main airport is ${data.airport}.\n`
-      );
+      if (data.city !== null && data.country !== null) {
+        console.log(`${data.city} is in ${data.country}.`)
+      }
+      if (data.temperature !== null && data.weather !== null) {
+        console.log(`Today there are ${data.temperature} degrees and the weather is ${data.weather}.`)
+      }
+      if (data.airport !== null) {
+        console.log(`The main airport is ${data.airport}.`);
+      }
     })
+
     .catch((error) => console.log("Error fetching data:", error))
 
 }
