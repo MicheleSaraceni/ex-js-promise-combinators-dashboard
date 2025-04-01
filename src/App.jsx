@@ -16,20 +16,24 @@ export default function App() {
 
     const arrayPromises = await Promise.all([promiseCittà, promiseMeteo, promiseAereoporto])
 
-    const [città, meteo, aereoporto] = arrayPromises;
+    const [arrayCittà, arrayMeteo, arrayAereoporto] = arrayPromises;
+
+    const città = arrayCittà[0];
+    const meteo = arrayMeteo[0];
+    const aereoporto = arrayAereoporto[0];
 
     return {
-      city: città[0].name,
-      country: città[0].country,
-      temperature: meteo[0].temperature,
-      weather: meteo[0].weather_description,
-      airport: aereoporto[0].name
+      city: città ? città.name : null,
+      country: città ? città.country : null,
+      temperature: meteo ? meteo.temperature : null,
+      weather: meteo ? meteo.weather_description : null,
+      airport: aereoporto ? aereoporto.name : null
     }
 
   }
 
 
-  getDashboardData("london")
+  getDashboardData("vienna")
     .then((data) => {
       console.log('Dasboard data:', data);
       console.log(
